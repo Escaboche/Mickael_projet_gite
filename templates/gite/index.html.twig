@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Les gites PROGICA{% endblock %}
+
+{% block body %}
+
+<h1>Les gites en vitrines</h1>
+
+<div class="row">
+    {% for gite in gites %}
+    <div class="col-4">
+
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ gite.name }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ gite.createdat|format_datetime() }}</h6>
+                <p class="card-text">{{ gite.description }}</p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
