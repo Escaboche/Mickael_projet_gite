@@ -21,7 +21,8 @@ class GiteController extends AbstractController
     public function index()
     {
         $gites = $this->repo->findAll();
-        return $this->render('gite/index.html.twig', ['gites' => $gites]);
+        return $this->render('gite/index.html.twig', [
+            'gites' => $gites]);
     }
 
     /**
