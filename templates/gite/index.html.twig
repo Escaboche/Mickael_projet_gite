@@ -15,6 +15,7 @@
                 <h5 class="card-title">{{ gite.name }}</h5>
                 <h6 class="card-subtitle mb-2 text-muted">{{ gite.createdat|format_datetime() }}</h6>
                 <p class="card-text">{{ gite.description }}</p>
+                <a class="btn btn-primary" href="{{ path('gite.show' , {'id': gite.id}) }}">Voir le gite</a>
             </div>
         </div>
     </div>
