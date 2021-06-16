@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\GiteRepository;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=GiteRepository::class)
@@ -20,36 +21,70 @@ class Gite
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message = "Ce champ est obligatoire")
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 50,
+     *      minMessage = "Votre nom ne doit posséder minimum {{ limit }} caractères",
+     *      maxMessage = "Votre nom ne doit pas depasser maximum {{ limit }} caractères"
+     * )
      */
     private $name;
 
     /**
      * @ORM\Column(type="text")
+     * @Assert\NotBlank(message = "Ce champ est obligatoire")
+     * @Assert\Length(
+     *      min = 2,
+     *      max = 150,
+     *      minMessage = "La description doit posséder minimum {{ limit }} caractères",
+     *      maxMessage = "La description ne doit pas depasser maximum {{ limit }} caractères"
+     * )
      */
     private $description;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message = "Ce champ est obligatoire")
+     * @Assert\Range(
+     *      min = 60,
+     *      max = 400,
+     *      notInRangeMessage = "La surface doit se trouver entre {{ min }} m² et  {{ max }} m²",
+     * )
      */
     private $surface;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message = "Ce champ est obligatoire")
+     * @Assert\Range(
+     *      min = 2,
+     *      max = 10,
+     *      notInRangeMessage = "Il ne peut y avoir mois de  {{ min }} chambre",
+     * )
      */
     private $bedrooms;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message = "Ce champ est obligatoire")
      */
     private $address;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message = "Ce champ est obligatoire")
      */
     private $city;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message = "Ce champ est obligatoire")
+     * @Assert\Length(
+     *      min = 5,
+     *      max = 5,
+     *      exactMessage = "La valeur doit etre exactement de 5 caractères"
+     * )
      */
     private $postal_code;
 

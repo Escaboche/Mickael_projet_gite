@@ -1,40 +1,42 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Creation de Gite{% endblock %}
+{% block title %}Creation de Gite
+{% endblock %}
 
 {% block body %}
 
-<div class="row">
-    <h1>Ajouter un Gite PROGICA</h1>
-</div>
+	<div class="row">
+		<h1>Ajouter un Gite PROGICA</h1>
+	</div>
 
-{{ form_start(formGite) }}
-<div class="row">
-    <div class="col-6">
-        {{ form_row(formGite.name) }}
-    </div>
-</div>
-<div class="row">
-    <div class="col">
-    {{ form_row(formGite.description) }}
-    </div>
-</div>
+	{{ form_start(formGite) }}
+	<div class="row">
+		<div class="col-6">
+            
+			{{ form_row(formGite.name) }}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col">
+			{{ form_row(formGite.description) }}
+		</div>
+	</div>
 
-<div class="row">
-<div class="col-3">{{ form_row(formGite.surface) }}</div>
-<div class="col-3">{{ form_row(formGite.bedrooms) }}</div>
-<div class="col-3">{{ form_row(formGite.animals) }}</div>
-</div>
+	<div class="row">
+		<div class="col-3">{{ form_row(formGite.surface) }}</div>
+		<div class="col-3">{{ form_row(formGite.bedrooms) }}</div>
+		<div class="col-3 mt-3">{{ form_row(formGite.animals) }}</div>
+	</div>
 
-<div class="row">
-<div class="col-3">{{ form_row(formGite.address) }}</div>
-<div class="col-3">{{ form_row(formGite.city) }}</div>
-<div class="col-3">{{ form_row(formGite.postal_code) }}</div>
-</div>
+	<div class="row">
+		<div class="col-3">{{ form_row(formGite.address) }}</div>
+		<div class="col-3">{{ form_row(formGite.city) }}</div>
+		<div class="col-3">{{ form_row(formGite.postal_code) }}</div>
+	</div>
 
-<input type="submit" value="Créer" class="mt-5 btn btn-secondary">
+	<input type="submit" value="Créer" class="mt-5 btn btn-secondary">
 
-{{ form_end(formGite) }}
+	{{ form_end(formGite) }}
 
 
 {% endblock %}

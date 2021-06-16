@@ -2,19 +2,25 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Gite;
 use App\Form\GiteType;
 use App\Repository\GiteRepository;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminController extends AbstractController {
 
+    private EntityManagerInterface $em;
     private GiteRepository $giteRepository;
 
-    public function __construct(GiteRepository $giteRepository)
+    public function __construct(GiteRepository $giteRepository, EntityManagerInterface $em)
     {
         $this->giteRepository = $giteRepository;
+        $this->em = $em;
     }
+
     
     /**
      * @Route("/admin", name="admin.index")
@@ -30,9 +36,22 @@ class AdminController extends AbstractController {
     /**
      * @Route("/admin/newG", name="admin.newG")
      */
-    public function newG(){
+    public function newG(Request $request){
 
-        $form = $this->createForm(GiteType::class);
+        $gite = new Gite();
+
+        $form = $this->createForm(GiteType::class, $gite);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            $this->em->persist($gite);
+            $this->em->flush();
+            $this->addFlash("success", "Le gite est bien enregistré");
+            return $this->redirectToRoute('admin.index');
+
+        }
+
         return $this->render('admin/newG.html.twig', [
             "formGite" => $form->createView()
         ]);
