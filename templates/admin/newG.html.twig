@@ -10,25 +10,30 @@
 	</div>
 
 	{{ form_start(formGite) }}
-	<div class="row">
-		<div class="col-6">
+	<div class="row mt-2">
+		<div class="col-3">
             
 			{{ form_row(formGite.name) }}
 		</div>
 	</div>
-	<div class="row">
-		<div class="col">
+	<div class="row mt-2">
+		<div class="col-10">
 			{{ form_row(formGite.description) }}
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="row mt-2">
 		<div class="col-3">{{ form_row(formGite.surface) }}</div>
 		<div class="col-3">{{ form_row(formGite.bedrooms) }}</div>
-		<div class="col-3 mt-3">{{ form_row(formGite.animals) }}</div>
+		<div class="col-3 mt-4">{{ form_row(formGite.animals) }}</div>
 	</div>
 
-	<div class="row">
+	<div class="row mt-2">
+		<div class="col-5">{{form_row(formGite.equipements)}}</div>
+		<div class="col-5">Service</div>
+	</div>
+
+	<div class="row mt-2">
 		<div class="col-3">{{ form_row(formGite.address) }}</div>
 		<div class="col-3">{{ form_row(formGite.city) }}</div>
 		<div class="col-3">{{ form_row(formGite.postal_code) }}</div>

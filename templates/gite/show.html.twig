@@ -10,8 +10,8 @@
     <div class="col-3">
         <table class="table table-striped table-info">
             <tbody>
-                
-                <tr> 
+
+                <tr>
                     <th>Nom</th>
                     <td>{{gite.name}}</td>
                 </tr>
@@ -21,11 +21,23 @@
                 </tr>
                 <tr>
                     <th>Surface</th>
-                    <td>{{gite.surface}}</td>
+                    <td>{{gite.surface}} m²</td>
                 </tr>
                 <tr>
                     <th>Chambre</th>
                     <td>{{gite.bedrooms}}</td>
+                </tr>
+                <tr>
+                    <th>Equipements</th>
+                    <td>
+                        <ul>
+                        {% for equipement in gite.equipements %}
+                            <li>
+                                {{equipement.name}}
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </td>
                 </tr>
                 <tr>
                     <th>Adresse</th>
@@ -42,8 +54,8 @@
                 <tr>
                     <th>Animaux</th>
                     {% if gite.animals %}
-                            <td>Autorisés</td>
-                    {% else %} <td>Refusés</td>
+                    <td>Les animeaux sont Autorisés</td>
+                    {% else %} <td>Les animeaux sont Refusés</td>
                     {% endif %}
                 </tr>
             </tbody>

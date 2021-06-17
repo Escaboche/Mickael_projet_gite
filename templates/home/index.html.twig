@@ -6,6 +6,27 @@
 
 
 {% block body%}
-<h1>Bienvenue</h1>
+<h1>Bienvenue chez les gites PROGICA</h1>
+
+<div class="row mt-4">
+    {% for gite in gites %}
+    <div class="col-4 mt-4">
+
+        <div class="card" style="width: 25rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ gite.name }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ gite.createdat|format_datetime() }}</h6>
+                <p class="card-text">{{ gite.description }}</p>
+                <a class="btn btn-primary" href="{{ path('gite.show' , {'id': gite.id}) }}">Voir le gite</a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="row-2 mt-4">
+    <a href="{{path('gite.index')}}" class="btn btn-info btn-lg">Voir plus de gites</a>
+    </div>
+    
+</div>
 
 {% endblock %}

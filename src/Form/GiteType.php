@@ -3,8 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Gite;
+use App\Entity\Equipement;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -68,6 +70,13 @@ class GiteType extends AbstractType
             ->add('animals', CheckboxType::class, [
                 'required' => false,
                 'label' => 'Acceptez-vous des animaux',
+            ])
+            ->add('equipements', EntityType::class, [
+                'class' => Equipement::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+                'required' => false,
+                'label' => 'Les équipements du gite',
             ]);
     }
 

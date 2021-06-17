@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\GiteRepository;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -98,10 +100,16 @@ class Gite
      */
     private $created_at;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Equipement::class, inversedBy="gites")
+     */
+    private $equipements;
+
     public function __construct()
     {
         $this->animals = false;
         $this->created_at = new DateTime();
+        $this->equipements = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -213,6 +221,30 @@ class Gite
     public function setCreatedAt(\DateTimeInterface $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Equipement[]
+     */
+    public function getEquipements(): Collection
+    {
+        return $this->equipements;
+    }
+
+    public function addEquipement(Equipement $equipement): self
+    {
+        if (!$this->equipements->contains($equipement)) {
+            $this->equipements[] = $equipement;
+        }
+
+        return $this;
+    }
+
+    public function removeEquipement(Equipement $equipement): self
+    {
+        $this->equipements->removeElement($equipement);
 
         return $this;
     }
