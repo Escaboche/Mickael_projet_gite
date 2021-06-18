@@ -44,7 +44,8 @@
                             <td>Autorisés</td>
                     {% else %} <td>Refusés</td>
                     {% endif %}
-            <td><a href="" class="btn btn-secondary">Editer</a></td>
+                    
+            <td><a href="{{path('admin.edit', {'id': gite.id }) }}" class="btn btn-secondary">Editer</a></td>
             
         </tr>
         {% endfor %}

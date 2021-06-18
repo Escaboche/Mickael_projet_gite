@@ -77,6 +77,7 @@ class GiteType extends AbstractType
                 'multiple' => true,
                 'required' => false,
                 'label' => 'Les équipements du gite',
+                'expanded' => true
             ]);
     }
 
