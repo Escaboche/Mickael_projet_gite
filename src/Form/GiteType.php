@@ -3,6 +3,7 @@
 namespace App\Form;
 
 use App\Entity\Gite;
+use App\Entity\Service;
 use App\Entity\Equipement;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -23,9 +24,7 @@ class GiteType extends AbstractType
                 'label' => 'Nom du gite',
                 'attr' => [
                     'placeholder' => 'Entrer le nom du gite'
-                    
                 ]
-
             ])
             ->add('description', TextareaType::class, [
                 'required' => false,
@@ -78,6 +77,11 @@ class GiteType extends AbstractType
                 'required' => false,
                 'label' => 'Les équipements du gite',
                 'expanded' => true
+            ])
+            ->add('services', EntityType::class, [
+                'class' => Service::class,
+                "choice_label" => "name",
+                "multiple" => true,
             ]);
     }
 

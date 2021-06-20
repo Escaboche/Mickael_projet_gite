@@ -2,9 +2,10 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Equipement;
 use Faker;
 use App\Entity\Gite;
+use App\Entity\Service;
+use App\Entity\Equipement;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 
@@ -38,6 +39,28 @@ class GiteFixtures extends Fixture
         $manager->persist($eq4);
         $manager->flush();
 
+        $services = [];
+
+        $serv1 = new Service();
+        $serv1->setName('Femme de ménage');
+
+        $serv2 = new Service();
+        $serv2->setName('Room service');
+
+        $serv3 = new Service();
+        $serv3->setName('All-include');
+
+        $serv4 = new Service();
+        $serv4->setName('Animal sitter');
+
+        array_push($services,$serv1, $serv2, $serv3, $serv4);
+
+        $manager->persist($serv1);
+        $manager->persist($serv2);
+        $manager->persist($serv3);
+        $manager->persist($serv4);
+        $manager->flush();
+
         for ($i=0; $i <= 100 ; $i++) { 
             $gite = new Gite();
             $gite
@@ -46,15 +69,16 @@ class GiteFixtures extends Fixture
                 ->setSurface($faker->numberBetween(61,399))
                 ->setBedrooms($faker->numberBetween(2,10))
                 ->addEquipement($faker->randomElement($equipements))
+                ->addService($faker->randomElement($services))
                 ->setAddress($faker->streetAddress())
                 ->setCity($faker->city())
                 ->setPostalCode($faker->postcode())
                 ->setAnimals($faker->boolean())
                 ->setCreatedAt($faker->dateTimeThisYear('now','Europe/Paris'));
                 
-            $manager->persist($gite);
-        }
+             $manager->persist($gite);
+         }
 
-        $manager->flush();
+         $manager->flush();
     }
 }

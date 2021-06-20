@@ -105,11 +105,17 @@ class Gite
      */
     private $equipements;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Service::class, inversedBy="gites")
+     */
+    private $services;
+
     public function __construct()
     {
         $this->animals = false;
         $this->created_at = new DateTime();
         $this->equipements = new ArrayCollection();
+        $this->services = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -245,6 +251,30 @@ class Gite
     public function removeEquipement(Equipement $equipement): self
     {
         $this->equipements->removeElement($equipement);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Service[]
+     */
+    public function getServices(): Collection
+    {
+        return $this->services;
+    }
+
+    public function addService(Service $service): self
+    {
+        if (!$this->services->contains($service)) {
+            $this->services[] = $service;
+        }
+
+        return $this;
+    }
+
+    public function removeService(Service $service): self
+    {
+        $this->services->removeElement($service);
 
         return $this;
     }

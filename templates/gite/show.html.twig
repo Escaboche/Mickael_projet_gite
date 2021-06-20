@@ -40,6 +40,18 @@
                     </td>
                 </tr>
                 <tr>
+                    <th>Services</th>
+                    <td>
+                        <ul>
+                        {% for services in gite.services %}
+                            <li>
+                                {{services.name}}
+                            </li>
+                        {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
                     <th>Adresse</th>
                     <td>{{gite.address}}</td>
                 </tr>
