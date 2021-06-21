@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Gite;
+use App\Entity\GiteSearch;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
@@ -33,8 +34,35 @@ class GiteRepository extends ServiceEntityRepository
             ->getResult()
         ;
     }
-    
 
+    public function findOneBySomeField($value): ?Gite
+    {
+        return $this->createQueryBuilder('g')
+            ->andWhere('g.exampleField = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+    
+    public function findAllGiteSearch(GiteSearch $search): array
+    {
+        $query = $this->createQueryBuilder('g');
+        
+        if ($search->getMinSurface()){
+            $query = $query
+                        ->andWhere('g.surface > :minSurface')
+                        ->setParameter('minSurface', $search->getMinSurface() );
+        }
+
+        if ($search->getMaxBedrooms()){
+            $query = $query
+                        ->andWhere('g.surface > :maxBedrooms')
+                        ->setParameter('maxBedrooms', $search->getMaxBedrooms() );
+        }
+
+        return $query->getQuery()->getResult();
+    }
 
     /*
     public function findOneBySomeField($value): ?Gite

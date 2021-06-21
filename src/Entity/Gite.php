@@ -110,6 +110,11 @@ class Gite
      */
     private $services;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $price;
+
     public function __construct()
     {
         $this->animals = false;
@@ -275,6 +280,18 @@ class Gite
     public function removeService(Service $service): self
     {
         $this->services->removeElement($service);
+
+        return $this;
+    }
+
+    public function getPrice(): ?int
+    {
+        return $this->price;
+    }
+
+    public function setPrice(int $price): self
+    {
+        $this->price = $price;
 
         return $this;
     }

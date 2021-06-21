@@ -2,6 +2,8 @@
 
 namespace App\Controller\Gite;
 
+use App\Entity\GiteSearch;
+use App\Form\GiteSearchType;
 use App\Repository\GiteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -37,15 +39,20 @@ class GiteController extends AbstractController
      */
     public function index(GiteRepository $repo, PaginatorInterface $paginator, Request $request)
     {
-        
+        $search = new GiteSearch();
+
+        $form = $this->createForm(GiteSearchType::class, $search);
+        $form->handleRequest($request);
+
         $pagination = $paginator->paginate(
-            $repo->findAll(),
+            $repo->findAllGiteSearch($search),
             $request->query->getInt('page', 1),
             9
         );
-
+        
         return $this->render('gite/index.html.twig', [
-            'pagination' => $pagination]);
+            'pagination' => $pagination,
+            'form' => $form->createView()]);
     }
 
     /**
