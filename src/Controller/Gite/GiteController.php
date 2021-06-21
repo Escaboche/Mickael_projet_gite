@@ -3,13 +3,15 @@
 namespace App\Controller\Gite;
 
 use App\Repository\GiteRepository;
-use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class GiteController extends AbstractController 
 {
-    
+   
 
     private GiteRepository $repo;
 
@@ -33,11 +35,17 @@ class GiteController extends AbstractController
     /**
      * @Route("/gites", name="gite.index")
      */
-    public function index()
+    public function index(GiteRepository $repo, PaginatorInterface $paginator, Request $request)
     {
-        $gites = $this->repo->findAll();
+        
+        $pagination = $paginator->paginate(
+            $repo->findAll(),
+            $request->query->getInt('page', 1),
+            9
+        );
+
         return $this->render('gite/index.html.twig', [
-            'gites' => $gites]);
+            'pagination' => $pagination]);
     }
 
     /**

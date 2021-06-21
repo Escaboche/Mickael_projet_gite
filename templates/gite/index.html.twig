@@ -1,25 +1,43 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Les gites PROGICA{% endblock %}
+{% block title %}Les gites PROGICA
+{% endblock %}
 
 {% block body %}
 
-<h1>Les gites en vitrines</h1>
+	<h1 class="">Les gites en vitrines</h1>
 
-<div class="row mt-4">
-    {% for gite in gites %}
-    <div class="col-4 mt-4">
 
-        <div class="card" style="width: 27rem;">
-            <div class="card-body">
-                <h5 class="card-title">{{ gite.name }}</h5>
-                <h6 class="card-subtitle mb-2 text-muted">{{ gite.createdat|format_datetime() }}</h6>
-                <p class="card-text">{{ gite.description }}</p>
-                <a class="btn btn-primary" href="{{ path('gite.show' , {'id': gite.id}) }}">Voir le gite</a>
-            </div>
-        </div>
-    </div>
-    {% endfor %}
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">Rechercher
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </div>
+</nav>
+<div class="collapse" id="navbarToggleExternalContent">
+  <div class="bg-dark p-3"><p>ergergr</p>
+    <h5 class="text-white h4">Rechercher par :</h5>
+    <span class="text-muted">Toggleable via the navbar brand.</span>
+  </div>
 </div>
 
-{% endblock %}
+		<div class="row mt-4">
+			{% for gite in pagination %}
+				<div class="col-4 mt-4">
+
+					<div class="card" style="width: 27rem;">
+						<div class="card-body">
+							<h5 class="card-title">{{ gite.name }}</h5>
+							<h6 class="card-subtitle mb-2 text-muted">{{ gite.createdat|format_datetime() }}</h6>
+							<p class="card-text">{{ gite.description }}</p>
+							<a class="btn btn-primary" href="{{ path('gite.show' , {'id': gite.id}) }}">Voir le gite</a>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+		<div class="pagination mt-3">
+			{{ knp_pagination_render(pagination) }}
+		</div>
+	{% endblock %}

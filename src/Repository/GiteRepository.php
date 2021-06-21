@@ -3,8 +3,9 @@
 namespace App\Repository;
 
 use App\Entity\Gite;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Gite|null find($id, $lockMode = null, $lockVersion = null)
@@ -33,6 +34,7 @@ class GiteRepository extends ServiceEntityRepository
         ;
     }
     
+
 
     /*
     public function findOneBySomeField($value): ?Gite
