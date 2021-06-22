@@ -67,6 +67,7 @@ class GiteFixtures extends Fixture
                 ->setname('Le gite de '. $faker->userName())
                 ->setDescription($faker->text(100))
                 ->setSurface($faker->numberBetween(61,399))
+                ->setPrice($faker->numberBetween(80000,450000))
                 ->setBedrooms($faker->numberBetween(2,10))
                 ->addEquipement($faker->randomElement($equipements))
                 ->addService($faker->randomElement($services))

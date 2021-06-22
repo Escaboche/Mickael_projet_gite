@@ -24,6 +24,11 @@ class GiteSearchType extends AbstractType
                 "attr" => [
                     "placeholder" => "Nombre de chambre maximum"]
             ])
+            ->add('maxPrice',IntegerType::class,[
+                "required" => false,
+                "attr" => [
+                    "placeholder" => "Prix maximum"]
+            ])
             ->add('submit', SubmitType::class,[
                 'label' => 'Soumettre'
             ])

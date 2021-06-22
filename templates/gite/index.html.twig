@@ -24,8 +24,11 @@
 			<div class="">
 				{{form_row(form.minSurface)}}
 			</div>
-			<div class=>
+			<div class="">
 				{{form_row(form.maxBedrooms)}}
+			</div>
+			<div class="">
+				{{form_row(form.maxPrice)}}
 			</div>
 			<div class="mt-4">
 				{{form_rest(form)}}
@@ -38,16 +41,8 @@
 	{% for gite in pagination %}
 	<div class="col-4 mt-4">
 
-		<div class="card" style="width: 27rem;">
-			<div class="card-body">
-				<h5 class="card-title text-primary">{{ gite.name }}</h5>
-				<h6 class="card-subtitle mb-2 mt-1 text-muted">{{ gite.createdat|format_datetime() }}</h6>
-				<p class="card-text">{{ gite.description }}</p>
-				<p class="card-text">{{ gite.surface }} m²</p>
-				<a class="btn btn-primary" href="{{ path('gite.show' , {'id': gite.id}) }}">Voir le gite</a>
-			</div>
-		</div>
-	</div>
+		{{ include("other/giteCard.html.twig") }}
+
 	{% endfor %}
 </div>
 <div class="pagination mt-3">

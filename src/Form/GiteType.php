@@ -11,6 +11,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
@@ -24,6 +25,13 @@ class GiteType extends AbstractType
                 'label' => 'Nom du gite',
                 'attr' => [
                     'placeholder' => 'Entrer le nom du gite'
+                ]
+            ])
+            ->add('price', IntegerType::class, [
+                'required' => false,
+                'label' => 'Prix du gite',
+                'attr' => [
+                    'placeholder' => 'Entrer le prix du gite'
                 ]
             ])
             ->add('description', TextareaType::class, [

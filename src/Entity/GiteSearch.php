@@ -24,6 +24,16 @@ class GiteSearch {
      * )
      */
     private $maxBedrooms;
+    
+    /**
+     * @var int|null $maxPrice prix maximum
+     *@Assert\Range(
+     *      min = 80000,
+     *      max = 450000,
+     *      notInRangeMessage = "Le prix minimum est de {{ min }} et maximum de {{ max }}",
+     * )
+     */
+    private $maxPrice;
 
 
     /**
@@ -70,6 +80,30 @@ class GiteSearch {
     public function setMaxBedrooms($maxBedrooms)
     {
         $this->maxBedrooms = $maxBedrooms;
+
+        return $this;
+    }
+
+    /**
+     * Get $maxPrice prix maximum
+     *
+     * @return  int|null
+     */ 
+    public function getMaxPrice()
+    {
+        return $this->maxPrice;
+    }
+
+    /**
+     * Set $maxPrice prix maximum
+     *
+     * @param  int|null  $maxPrice  $maxPrice prix maximum
+     *
+     * @return  self
+     */ 
+    public function setMaxPrice($maxPrice)
+    {
+        $this->maxPrice = $maxPrice;
 
         return $this;
     }

@@ -112,6 +112,12 @@ class Gite
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\NotBlank(message = "Ce champ est obligatoire")
+     * @Assert\Range(
+     *      min = 80000,
+     *      max = 450000,
+     *      notInRangeMessage = "Le prix minimum est de {{ min }} et maximum de {{ max }}",
+     * )
      */
     private $price;
 

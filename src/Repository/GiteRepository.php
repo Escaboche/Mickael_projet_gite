@@ -7,6 +7,7 @@ use App\Entity\GiteSearch;
 use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Mapping\OrderBy;
 
 /**
  * @method Gite|null find($id, $lockMode = null, $lockVersion = null)
@@ -52,13 +53,23 @@ class GiteRepository extends ServiceEntityRepository
         if ($search->getMinSurface()){
             $query = $query
                         ->andWhere('g.surface > :minSurface')
-                        ->setParameter('minSurface', $search->getMinSurface() );
+                        ->setParameter('minSurface', $search->getMinSurface() )
+                        ->orderBy('g.surface', 'ASC');;
         }
 
         if ($search->getMaxBedrooms()){
             $query = $query
-                        ->andWhere('g.surface > :maxBedrooms')
-                        ->setParameter('maxBedrooms', $search->getMaxBedrooms() );
+                        ->andWhere('g.bedrooms = :maxBedrooms')
+                        ->setParameter('maxBedrooms', $search->getMaxBedrooms() )
+                        ->orderBy('g.bedrooms', 'DESC');
+        }
+
+        if ($search->getMaxPrice()){
+            $query = $query
+                        ->andWhere('g.price < :maxPrice')
+                        
+                        ->setParameter('maxPrice', $search->getMaxPrice() )
+                        ->orderBy('g.price', 'DESC');
         }
 
         return $query->getQuery()->getResult();
