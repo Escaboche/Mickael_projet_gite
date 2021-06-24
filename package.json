@@ -1,0 +1,27 @@
+{
+  "name": "VisioSymfony",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Escaboche/Mickael_projet_gite.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Escaboche/Mickael_projet_gite/issues"
+  },
+  "homepage": "https://github.com/Escaboche/Mickael_projet_gite#readme",
+  "dependencies": {
+    "mjml": "^4.10.0"
+  },
+  "devDependencies": {},
+  "description": ""
+}

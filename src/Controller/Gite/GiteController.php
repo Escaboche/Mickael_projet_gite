@@ -2,8 +2,12 @@
 
 namespace App\Controller\Gite;
 
+use App\Entity\Gite;
+use App\Entity\Contact;
+use App\Form\ContactType;
 use App\Entity\GiteSearch;
 use App\Form\GiteSearchType;
+use App\Notification\ContactNotification;
 use App\Repository\GiteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
@@ -58,12 +62,27 @@ class GiteController extends AbstractController
     /**
      *@Route("/gite/{id}", name="gite.show") 
      */
-    public function show(int $id)
+    public function show(Gite $gite, Request $request, ContactNotification $notification)
     {
-        $gite = $this->repo->find($id);
+        $contact = new Contact();
+        $contact->setGite($gite);
+
+        $form = $this->createForm(ContactType::class, $contact);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $notification->notify($contact);
+            
+            $this->addFlash("success", "Le mail est bien envoyé");
+            return $this->redirectToRoute('gite.show',[
+                'id' => $gite->getId()
+            ]);
+
+        }
 
         return $this->render('gite/show.html.twig', [
-            "gite" => $gite
+            "gite" => $gite,
+            "form" => $form->createView()
         ]);
     }
 }
