@@ -1,21 +1,23 @@
-<div class="card" style="width: 18rem;">
-	<div class="card-body">
-		{# <div class="card">
-			{% if gite.imageName %}
-				<img src="" class="card-img-top" alt="">
-			{% else %}
-				<img src="" class="card-img-top" alt="">
-			{% endif %}
+<div class="col-4 mt-4">
+	<div class="card" style="width: 18rem; display:flex">
+		<div class="card-body">
+			<div class="card">
+				{% if gite.imageName %}
+					<img src="{{vich_uploader_asset(gite,"imageFile" )}}" class="card-img-top" alt="">
+				{% else %}
+					<img src="{{ asset('images/img/images.png')}}" class="card-img-top" alt="">
+				{% endif %}
 
-		</div> #}
-		<h5 class="card-title text-primary fs-3">{{ gite.name }}</h5>
-		<h6 class="card-subtitle mb-2 mt-2 text-muted">{{ gite.createdat|format_datetime(locale='fr') }}</h6>
-		<p class="card-text fs-4">{{ gite.surface }}
-			m² -
-			{{gite.city}}</p>
-		<p class="card-text text-primary fs-2">{{ gite.price|number_format(0, '', '.') }}
-			€</p>
-		<a class="btn btn-primary" href="{{ path('gite.show' , {'id': gite.id}) }}">Voir le gite</a>
+			</div>
+			<h5 class="card-title text-primary fs-3">{{ gite.name }}</h5>
+			<h6 class="card-subtitle mb-2 mt-2 text-muted">{{ gite.createdat|format_datetime(locale='fr') }}</h6>
+			<p class="card-text fs-4">{{ gite.surface }}
+				m² -
+				{{gite.city}}</p>
+			<p class="card-text text-primary fs-2">{{ gite.price|number_format(0, '', '.') }}
+				€</p>
+			<a class="btn btn-primary" href="{{ path('gite.show' , {'id': gite.id}) }}">Voir le gite</a>
+		</div>
 	</div>
 </div>
 
