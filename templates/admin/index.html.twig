@@ -41,11 +41,25 @@
             <td>{{gite.city}}</td>
             <td>{{gite.postalcode}}</td>
             {% if gite.animals %}
-                            <td>Autorisés</td>
-                    {% else %} <td>Refusés</td>
-                    {% endif %}
+                <td>Autorisés</td>
+            {% else %} 
+                <td>Refusés</td>
+            {% endif %}
                     
             <td><a href="{{path('admin.edit', {'id': gite.id }) }}" class="btn btn-secondary">Editer</a></td>
+
+
+            <form method="post" action="{{path('admin.delete', {'id': gite.id }) }}" onsubmit="return confirm('Etes vous vraiment sur ?')">
+
+                
+                <input  type="hidden" name="_token" value="{{ csrf_token('delete-item' ~ gite.id) }}"/>
+                    <td>
+                        <button class="btn btn-danger">Supprimer</button>
+                    </td>
+            
+            </form>
+             
+
             
         </tr>
         {% endfor %}

@@ -13,32 +13,32 @@
 
 
 <div class="row-2 mt-4">
-    <div class="col-3">
-        <table class="table table-striped table-info">
+    <div class="col-12">
+        <table class="table table-striped table-info text-center fs-5">
             <tbody>
 
                 <tr>
-                    <th>Nom</th>
+                    <th>Nom :</th>
                     <td>{{gite.name}}</td>
                 </tr>
                 <tr>
-                    <th>Description</th>
+                    <th>Description :</th>
                     <td>{{gite.description}}</td>
                 </tr>
                 <tr>
-                    <th>Surface</th>
+                    <th>Surface :</th>
                     <td>{{gite.surface}} m²</td>
                 </tr>
                 <tr>
-                    <th>Prix</th>
+                    <th>Prix :</th>
                     <td>{{gite.price|number_format(0, '', ' ')}} €</td>
                 </tr>
                 <tr>
-                    <th>Chambre</th>
+                    <th>Chambre :</th>
                     <td>{{gite.bedrooms}}</td>
                 </tr>
                 <tr>
-                    <th>Equipements</th>
+                    <th>Equipements :</th>
                     <td>
                         <ul>
                         {% for equipement in gite.equipements %}
@@ -50,7 +50,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>Services</th>
+                    <th>Services :</th>
                     <td>
                         <ul>
                         {% for services in gite.services %}
@@ -62,19 +62,19 @@
                     </td>
                 </tr>
                 <tr>
-                    <th>Adresse</th>
+                    <th>Adresse :</th>
                     <td>{{gite.address}}</td>
                 </tr>
                 <tr>
-                    <th>Ville</th>
+                    <th>Ville :</th>
                     <td>{{gite.city}}</td>
                 </tr>
                 <tr>
-                    <th>Code postal</th>
+                    <th>Code postal :</th>
                     <td>{{gite.postalcode}}</td>
                 </tr>
                 <tr>
-                    <th>Animaux</th>
+                    <th>Animaux :</th>
                     {% if gite.animals %}
                     <td>Les animeaux sont Autorisés</td>
                     {% else %} <td>Les animeaux sont Refusés</td>

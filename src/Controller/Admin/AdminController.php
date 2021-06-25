@@ -7,6 +7,7 @@ use App\Form\GiteType;
 use App\Repository\GiteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -58,7 +59,7 @@ class AdminController extends AbstractController {
     }
 
     /**
-     * @Route("/admin/{id}", name="admin.edit")
+     * @Route("/admin/{id}", name="admin.edit" , methods={"GET","POST"})
      */
     public function edit(Gite $gite, Request $request){
 
@@ -71,13 +72,25 @@ class AdminController extends AbstractController {
             $this->addFlash("success", "Le gite est bien été modifier");
             return $this->redirectToRoute('admin.index');
 
-        }
-
-        
+        }       
         
         return $this->render('admin/edit.html.twig', [
             'gite' => $gite,
             'formGite' => $form->createView()
         ]);
+    }
+
+    /**
+     * @Route("/{id}", name="admin.delete", methods={"POST"})
+     */
+    public function delete(Gite $gite, Request $request) : Response
+    {        
+        if ($this->isCsrfTokenValid('delete-item'.$gite->getId(),$request->request->get('_token') )) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($gite);
+            $em->flush();
+            
+        }       
+        return $this->redirectToRoute("admin.index");
     }
 }
