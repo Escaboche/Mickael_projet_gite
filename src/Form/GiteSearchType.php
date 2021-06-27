@@ -5,6 +5,7 @@ namespace App\Form;
 
 use App\Entity\Equipement;
 use App\Entity\GiteSearch;
+use App\Entity\Service;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -43,6 +44,13 @@ class GiteSearchType extends AbstractType
             ])->add('animalsFriendly',CheckboxType::class,[
                 "label" => "Les animeaux sont acceptés ",
                 "required" => false
+            ])
+            ->add('byServices',EntityType::class,[
+                'label' => 'Trie par Service ',
+                "required" => false,
+                "class" => Service::class,
+                "expanded" => true,
+                "multiple" => true
             ])
             ->add('submit', SubmitType::class,[
                 'label' => 'Soumettre'

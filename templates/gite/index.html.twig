@@ -5,55 +5,58 @@
 
 {% block body %}
 
-<h1 class="">Les gites en vitrines</h1>
+	<h1 class="">Les gites en vitrines</h1>
 
 
-<nav class="navbar navbar-dark bg-dark mt-4 col-5">
-	<div class="container-fluid ">
-		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-			data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
-			aria-expanded="false" aria-label="Toggle navigation">Rechercher
-			<span class="navbar-toggler-icon"></span>
-		</button>
-	</div>
-</nav>
+	<nav class="navbar navbar-dark bg-dark mt-4 col-5">
+		<div class="container-fluid ">
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">Rechercher
+				<span class="navbar-toggler-icon"></span>
+			</button>
+		</div>
+	</nav>
 
-<div class="collapse col-12" id="navbarToggleExternalContent">
-	<div class="row-11 bg-dark p-3">
-		<h5 class="text-white h4">Rechercher par :</h5>
+	<div class="collapse col-12" id="navbarToggleExternalContent">
+		<div class="row-11 bg-dark p-3">
+			<h5 class="text-white h4">Rechercher par :</h5>
 			{{form_start(form)}}
-		<div class="">
-			{{form_row(form.minSurface)}}
-		</div>
-		<div class="">
-			{{form_row(form.maxBedrooms)}}
-		</div>
-		<div class="">
-			{{form_row(form.maxPrice)}}
+			<div class="">
+				{{form_row(form.minSurface)}}
+			</div>
+			<div class="">
+				{{form_row(form.maxBedrooms)}}
+			</div>
+			<div class="">
+				{{form_row(form.maxPrice)}}
+			</div>
+
+			<div class="row mt-4 text-white">
+				<div class="col-4">
+					{{form_row(form.byEquipement)}}
+				</div>
+				<div class="col-4 ">
+					{{form_row(form.animalsFriendly)}}
+				</div>
+				<div class="col-4 ">
+					{{form_row(form.byServices)}}
+				</div>
+				<div class=" mt-2">
+				{{form_row(form.submit)}}
+				</div>
+			</div>
 		</div>
 
-		<div class="row mt-4 text-white">
-			<div class="col-4">
-				{{form_row(form.byEquipement)}}
-			</div>
-			<div class="col-4">
-				{{form_row(form.animalsFriendly)}}
-			</div>
-			{{form_end(form)}}
-		</div>
 	</div>
 
-</div>
 
+	<div class="row mt-4">
+		{% for gite in pagination %}
 
-<div class="row mt-4">
-	{% for gite in pagination %}
+			{{ include("other/giteCard.html.twig") }}
 
-	{{ include("other/giteCard.html.twig") }}
-
-	{% endfor %}
-</div>
-<div class="pagination mt-3">
-	{{ knp_pagination_render(pagination) }}
-</div>
+		{% endfor %}
+	</div>
+	<div class="pagination mt-3">
+		{{ knp_pagination_render(pagination) }}
+	</div>
 {% endblock %}

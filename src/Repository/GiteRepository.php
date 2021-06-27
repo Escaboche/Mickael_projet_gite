@@ -49,8 +49,10 @@ class GiteRepository extends ServiceEntityRepository
     public function findAllGiteSearch(GiteSearch $search)
     {
         $query = $this->createQueryBuilder('g')
-                        ->select('e' , 'g')
-                        ->join('g.equipements', 'e');
+                        ->join('g.equipements', 'e')
+                        ->join('g.services', 's')
+                        ->select('e','s' , 'g');
+                        
 
         if ($search->getMinSurface()){
             $query = $query
@@ -74,17 +76,25 @@ class GiteRepository extends ServiceEntityRepository
                         ->orderBy('g.price', 'DESC');
         }
 
-        if (!empty($search->getAnimalsFriendly())) {
+        if (($search->getAnimalsFriendly())) {
             $query = $query
                         ->andWhere('g.animals = 1');
         }
         
-         if (!empty($search->byEquipement)) {
+         if (($search->getByEquipement())) {
              
              $query = $query
                          ->andWhere('e.id IN (:equipements)')
-                         ->setParameter('equipements', $search->byEquipement);
+                         ->setParameter('equipements', $search->getByEquipement());
                         
+         }
+
+          if (!empty($search->byServices)) {
+             
+             $query = $query
+                        ->andWhere('s.id IN (:services)')
+                        ->setParameter('services', $search->byServices);
+                       
          }
 
         return $query->getQuery()->getResult();

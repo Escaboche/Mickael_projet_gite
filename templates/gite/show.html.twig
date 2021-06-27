@@ -6,10 +6,13 @@
 
 <h1>Gite : {{ gite.name }}</h1>
 
-{{form_start(form)}}
-{{form_rest(form)}}
-<button type="submit">Envoyer</button>
-{{form_end(form)}}
+<button class="btn btn-primary mt-3" id="Contact">Nous contacter</button>
+<div class=" mt-2 mb-2 " id="contactForm" >
+    {{form_start(form)}}
+    {{form_rest(form)}}
+    <button class="btn btn-primary mt-2" type="submit">Envoyer</button>
+    {{form_end(form)}}
+</div>
 
 
 <div class="row-2 mt-4">
@@ -41,11 +44,11 @@
                     <th>Equipements :</th>
                     <td>
                         <ul>
-                        {% for equipement in gite.equipements %}
+                            {% for equipement in gite.equipements %}
                             <li>
                                 {{equipement.name}}
                             </li>
-                        {% endfor %}
+                            {% endfor %}
                         </ul>
                     </td>
                 </tr>
@@ -53,11 +56,11 @@
                     <th>Services :</th>
                     <td>
                         <ul>
-                        {% for services in gite.services %}
+                            {% for services in gite.services %}
                             <li>
                                 {{services.name}}
                             </li>
-                        {% endfor %}
+                            {% endfor %}
                         </ul>
                     </td>
                 </tr>

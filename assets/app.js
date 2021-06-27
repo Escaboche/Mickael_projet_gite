@@ -10,3 +10,15 @@ import './styles/app.css';
 
 // start the Stimulus application
 import './bootstrap';
+
+let BtnContact = document.getElementById('Contact');
+
+BtnContact.addEventListener('click', function(){
+    let form = document.getElementById('contactForm');
+
+    if (form.style.display = "none") {
+        form.style.display = "block";
+        BtnContact.style.display = "none";
+    }
+
+})

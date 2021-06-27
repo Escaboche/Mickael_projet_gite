@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Service;
 use App\Entity\Equipement;
 use Symfony\Component\Validator\Constraints as Assert;
 
@@ -40,12 +41,17 @@ class GiteSearch {
      * @var Equipement|null
      *
      */
-    public $byEquipement;
+    private $byEquipement;
 
     /**
      * @var boolean|null
      */
     public $animalsFriendly;
+
+    /**
+     * @var Service|null
+     */
+    public $byServices;
 
     /**
      * Get $minSurface Surface minimum
@@ -144,5 +150,29 @@ class GiteSearch {
         return $this;
     }
 
+
+    /**
+     * Get the value of byEquipement
+     *
+     * @return  Equipement|null
+     */ 
+    public function getByEquipement()
+    {
+        return $this->byEquipement;
+    }
+
+    /**
+     * Set the value of byEquipement
+     *
+     * @param  Equipement|null  $byEquipement
+     *
+     * @return  self
+     */ 
+    public function setByEquipement($byEquipement)
+    {
+        $this->byEquipement = $byEquipement;
+
+        return $this;
+    }
 }
     
