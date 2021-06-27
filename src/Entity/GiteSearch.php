@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Equipement;
 use Symfony\Component\Validator\Constraints as Assert;
 
 class GiteSearch {
@@ -35,6 +36,16 @@ class GiteSearch {
      */
     private $maxPrice;
 
+    /**
+     * @var Equipement|null
+     *
+     */
+    public $byEquipement;
+
+    /**
+     * @var boolean|null
+     */
+    public $animalsFriendly;
 
     /**
      * Get $minSurface Surface minimum
@@ -107,4 +118,31 @@ class GiteSearch {
 
         return $this;
     }
+    
+
+    /**
+     * Get the value of animalsFriendly
+     *
+     * @return  boolean
+     */ 
+    public function getAnimalsFriendly()
+    {
+        return $this->animalsFriendly;
+    }
+
+    /**
+     * Set the value of animalsFriendly
+     *
+     * @param  boolean  $animalsFriendly
+     *
+     * @return  self
+     */ 
+    public function setAnimalsFriendly(bool $animalsFriendly)
+    {
+        $this->animalsFriendly = $animalsFriendly;
+
+        return $this;
+    }
+
 }
+    

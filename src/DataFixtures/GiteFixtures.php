@@ -6,6 +6,7 @@ use Faker;
 use App\Entity\Gite;
 use App\Entity\Service;
 use App\Entity\Equipement;
+use DateTime;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 
@@ -64,6 +65,8 @@ class GiteFixtures extends Fixture
         for ($i=0; $i <= 100 ; $i++) { 
             $gite = new Gite();
             $gite
+                ->setImageName('test')
+                ->setUpdatedAt(new DateTime())
                 ->setname('Le gite de '. $faker->userName())
                 ->setDescription($faker->text(100))
                 ->setSurface($faker->numberBetween(61,399))

@@ -2,11 +2,12 @@
 	<div class="card" style="width: 18rem; display:flex">
 		<div class="card-body">
 			<div class="card">
-				{% if gite.imageName %}
+				 {% if gite.imageName %}
 					<img src="{{vich_uploader_asset(gite,"imageFile" )}}" class="card-img-top" alt="">
 				{% else %}
-					<img src="{{ asset('images/img/images.png')}}" class="card-img-top" alt="">
-				{% endif %}
+					<img src="{{asset('images/img/images.png')}}" class="card-img-top" alt="">
+				{% endif %} 
+			
 
 			</div>
 			<h5 class="card-title text-primary fs-3">{{ gite.name }}</h5>

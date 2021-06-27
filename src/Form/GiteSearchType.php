@@ -2,12 +2,16 @@
 
 namespace App\Form;
 
+
+use App\Entity\Equipement;
 use App\Entity\GiteSearch;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class GiteSearchType extends AbstractType
 {
@@ -28,6 +32,17 @@ class GiteSearchType extends AbstractType
                 "required" => false,
                 "attr" => [
                     "placeholder" => "Prix maximum"]
+            ])
+            ->add('byEquipement',EntityType::class,[
+                'label' => 'Trie par équipement ',
+                "required" => false,
+                "class" => Equipement::class,
+                "expanded" => true,
+                "multiple" => true
+
+            ])->add('animalsFriendly',CheckboxType::class,[
+                "label" => "Les animeaux sont acceptés ",
+                "required" => false
             ])
             ->add('submit', SubmitType::class,[
                 'label' => 'Soumettre'
