@@ -7,7 +7,7 @@
 <h1>Gite : {{ gite.name }}</h1>
 
 <button class="btn btn-primary mt-3" id="Contact">Nous contacter</button>
-<div class=" mt-2 mb-2 " id="contactForm" >
+<div class=" mt-2 mb-2 " id="contactForm">
     {{form_start(form)}}
     {{form_rest(form)}}
     <button class="btn btn-primary mt-2" type="submit">Envoyer</button>
@@ -15,9 +15,9 @@
 </div>
 
 
-<div class="row-2 mt-4">
-    <div class="col-12">
-        <table class="table table-striped table-info text-center fs-5">
+<div class="row mt-4">
+    <div class="col-8">
+        <table class=" table table-striped table-info text-center fs-5">
             <tbody>
 
                 <tr>
@@ -85,6 +85,14 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+
+    <div class="col-4">
+        {% if gite.imageName %}
+            <img src=" {{vich_uploader_asset(gite,"imageFile" )}}" class="card-img-top" alt="">
+        {% else %}
+            <img src="{{asset('images/img/images.png')}}" class="card-img-top" alt="">
+        {% endif %}
     </div>
 </div>
 

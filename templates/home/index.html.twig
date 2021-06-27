@@ -1,4 +1,3 @@
-
 {% extends 'base.html.twig' %}
 
 
@@ -6,21 +5,28 @@
 
 
 {% block body%}
-<h1>Bienvenue chez les gites PROGICA</h1>
-<h2>Les gites à la une</h2>
+<div class="jumbotron">
+    <h1 class="display-2">Bienvenue chez les gites PROGICA</h1>
+    <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias recusandae sit consequatur officiis
+        aliquam! Inventore laborum atque, voluptatem vero mollitia veritatis iste quidem sequi, vitae voluptatibus
+        rerum, laboriosam deleniti reiciendis? </p>
+    <hr class="my-4">
+    <h2>Les gites à la une</h2>
+</div>
+
 
 <div class="row mt-4">
     {% for gite in gites %}
-    
 
-        {{ include("other/giteCard.html.twig") }}
+
+    {{ include("other/giteCard.html.twig") }}
 
     {% endfor %}
 
     <div class="row-2 mt-4">
-    <a href="{{path('gite.index')}}" class="btn btn-info btn-lg">Voir plus de gites</a>
+        <a href="{{path('gite.index')}}" class="btn btn-info btn-lg">Voir plus de gites</a>
     </div>
-    
+
 </div>
 
 {% endblock %}
