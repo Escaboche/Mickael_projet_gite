@@ -33,7 +33,7 @@
         {% for gite in gites %}
         <tr>
             <th>{{gite.id}}</th>
-            <th>{{gite.name}}</th>
+            <th><a style="color :rgb(48, 46, 161)"href="{{path('gite.show' , { 'id':gite.id }) }}">{{gite.name}}</a></th>
             <td>{{gite.description}}</td>
             <td>{{gite.surface}} m²</td>
             <td>{{gite.bedrooms}}</td>

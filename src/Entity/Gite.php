@@ -6,10 +6,12 @@ use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\GiteRepository;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 
 
 /**
@@ -23,7 +25,7 @@ class Gite
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -35,7 +37,7 @@ class Gite
      *      maxMessage = "Votre nom ne doit pas depasser maximum {{ limit }} caractères"
      * )
      */
-    private $name;
+    private string $name;
 
     /**
      * @ORM\Column(type="text")
@@ -47,7 +49,7 @@ class Gite
      *      maxMessage = "La description ne doit pas depasser maximum {{ limit }} caractères"
      * )
      */
-    private $description;
+    private string $description;
 
     /**
      * @ORM\Column(type="integer")
@@ -58,7 +60,7 @@ class Gite
      *      notInRangeMessage = "La surface doit se trouver entre {{ min }} m² et  {{ max }} m²",
      * )
      */
-    private $surface;
+    private int $surface;
 
     /**
      * @ORM\Column(type="integer")
@@ -69,19 +71,19 @@ class Gite
      *      notInRangeMessage = "Il ne peut y avoir mois de  {{ min }} chambre",
      * )
      */
-    private $bedrooms;
+    private int $bedrooms;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message = "Ce champ est obligatoire")
      */
-    private $address;
+    private string $address;
 
     /**
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank(message = "Ce champ est obligatoire")
      */
-    private $city;
+    private string $city;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -92,27 +94,27 @@ class Gite
      *      exactMessage = "La valeur doit etre exactement de 5 caractères"
      * )
      */
-    private $postal_code;
+    private string $postal_code;
 
     /**
      * @ORM\Column(type="boolean" ,options={"default":false})
      */
-    private $animals;
+    private bool $animals;
 
     /**
      * @ORM\Column(type="datetime")
      */
-    private $created_at;
+    private \Datetime $created_at;
 
     /**
      * @ORM\ManyToMany(targetEntity=Equipement::class, inversedBy="gites")
      */
-    private $equipements;
+    private Collection $equipements;
 
     /**
      * @ORM\ManyToMany(targetEntity=Service::class, inversedBy="gites")
      */
-    private $services;
+    private Collection $services;
 
     /**
      * @ORM\Column(type="integer")
@@ -123,12 +125,12 @@ class Gite
      *      notInRangeMessage = "Le prix minimum est de {{ min }} et maximum de {{ max }}",
      * )
      */
-    private $price;
+    private int $price;
 
     /**
      * @Vich\UploadableField(mapping="gite_image", fileNameProperty="imageName")
      * @Assert\Image(
-     *         mimeTypes={"image/jpeg", "image/png"}
+     *         mimeTypes={"image/jpeg"}
      * 
      * )
      * @var File|null
@@ -138,16 +140,16 @@ class Gite
     /**
      * @ORM\Column(type="string",length=255)
      * 
-     * @var string|null
+     * @var string
      */
-    private $imageName;
+    private string $imageName;
 
     /**
      * @ORM\Column(type="datetime")
      *
-     * @var \DateTimeInterface|null
+     * @var \DateTime
      */
-    private $updatedAt;
+    private \Datetime $updatedAt;
 
     public function __construct()
     {
@@ -258,12 +260,12 @@ class Gite
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getCreatedAt(): ?\DateTime
     {
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeInterface $created_at): self
+    public function setCreatedAt(\DateTime $created_at): self
     {
         $this->created_at = $created_at;
 
@@ -335,7 +337,7 @@ class Gite
      *
      * @return  File|null
      */ 
-    public function getImageFile()
+    public function getImageFile() : ?File
     {
         return $this->imageFile;
     }
@@ -345,9 +347,9 @@ class Gite
      *
      * @param  File|null  $imageFile
      *
-     * @return  self
+     * @return  property
      */ 
-    public function setImageFile($imageFile)
+    public function setImageFile(?File $imageFile)
     {
         $this->imageFile = $imageFile;
 
@@ -361,9 +363,9 @@ class Gite
     /**
      * Get the value of imageName
      *
-     * @return  string|null
+     * @return null|string
      */ 
-    public function getImageName()
+    public function getImageName() : ?string
     {
         return $this->imageName;
     }
@@ -371,11 +373,11 @@ class Gite
     /**
      * Set the value of imageName
      *
-     * @param  string|null  $imageName
+     * @param  string  $imageName
      *
      * @return  self
      */ 
-    public function setImageName($imageName)
+    public function setImageName(string $imageName)
     {
         $this->imageName = $imageName;
 
@@ -385,7 +387,7 @@ class Gite
     /**
      * Get the value of updatedAt
      *
-     * @return  \DateTimeInterface|null
+     * @return  \DateTime
      */ 
     public function getUpdatedAt()
     {
@@ -395,11 +397,11 @@ class Gite
     /**
      * Set the value of updatedAt
      *
-     * @param  \DateTimeInterface|null  $updatedAt
+     * @param  \DateTime  $updatedAt
      *
      * @return  self
      */ 
-    public function setUpdatedAt($updatedAt)
+    public function setUpdatedAt(Datetime $updatedAt)
     {
         $this->updatedAt = $updatedAt;
 

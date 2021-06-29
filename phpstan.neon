@@ -1,0 +1,11 @@
+parameters:
+        level: 8
+        paths:
+            - src
+
+        excludes_analyse:
+            - src/DataFixtures/*
+            - src/Security/SecurityAuthenticator.php
+
+        checkGenericClassInNonGenericObjectType: false
+        checkMissingIterableValueType: false

@@ -9,14 +9,15 @@ use Symfony\Component\Mailer\MailerInterface;
 
 class ContactNotification {
 
-    private $mailer;
+    private MailerInterface $mailer;
 
     public function __construct(MailerInterface $mailer)
     {
         $this->mailer = $mailer;
     }
 
-    public function notify(Contact $contact){
+    public function notify(Contact $contact) : void
+    {
         
         $email = (new TemplatedEmail())
                     ->from("EscabocheDev@gmail.com")

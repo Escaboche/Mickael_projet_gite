@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class AdminController extends AbstractController {
 
@@ -26,7 +27,7 @@ class AdminController extends AbstractController {
     /**
      * @Route("/admin", name="admin.index")
      */
-    public function index() {
+    public function index() : Response  {
 
         $gites = $this->giteRepository->findAll();
         return $this->render('admin/index.html.twig', [
@@ -37,7 +38,7 @@ class AdminController extends AbstractController {
     /**
      * @Route("/admin/newG", name="admin.newG")
      */
-    public function newG(Request $request){
+    public function newG(Request $request) : Response {
 
         $gite = new Gite();
 
@@ -61,7 +62,7 @@ class AdminController extends AbstractController {
     /**
      * @Route("/admin/{id}", name="admin.edit" , methods={"GET","POST"})
      */
-    public function edit(Gite $gite, Request $request){
+    public function edit(Gite $gite, Request $request) : Response {
 
         $form = $this->createForm(GiteType::class, $gite);
         $form->handleRequest($request);
@@ -83,7 +84,7 @@ class AdminController extends AbstractController {
     /**
      * @Route("/{id}", name="admin.delete", methods={"POST"})
      */
-    public function delete(Gite $gite, Request $request) : Response
+    public function delete(Gite $gite, Request $request) 
     {        
         if ($this->isCsrfTokenValid('delete-item'.$gite->getId(),$request->request->get('_token') )) {
             $em = $this->getDoctrine()->getManager();

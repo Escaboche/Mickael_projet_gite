@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\EquipementRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Entity\Gite;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\EquipementRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass=EquipementRepository::class)
@@ -17,17 +18,17 @@ class Equipement
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private int $id;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $name;
+    private string $name;
 
     /**
      * @ORM\ManyToMany(targetEntity=Gite::class, mappedBy="equipements")
      */
-    private $gites;
+    private Collection $gites;
 
     public function __construct()
     {

@@ -56,7 +56,7 @@ class Contact {
     /**
      * Get min = 3, max = 30
      */ 
-    public function getFirstname()
+    public function getFirstname() : string
     {
         return $this->firstname;
     }
@@ -66,7 +66,7 @@ class Contact {
      *
      * @return  self
      */ 
-    public function setFirstname($firstname)
+    public function setFirstname(string $firstname) :self
     {
         $this->firstname = $firstname;
 
@@ -76,7 +76,7 @@ class Contact {
     /**
      * Get min = 3, max = 30
      */ 
-    public function getLastname()
+    public function getLastname() : string
     {
         return $this->lastname;
     }
@@ -86,7 +86,7 @@ class Contact {
      *
      * @return  self
      */ 
-    public function setLastname($lastname)
+    public function setLastname(string $lastname) :self
     {
         $this->lastname = $lastname;
 
@@ -96,7 +96,7 @@ class Contact {
     /**
      * Get min = 10, max = 10
      */ 
-    public function getPhone()
+    public function getPhone() : string
     {
         return $this->phone;
     }
@@ -106,7 +106,7 @@ class Contact {
      *
      * @return  self
      */ 
-    public function setPhone($phone)
+    public function setPhone(string $phone) :self
     {
         $this->phone = $phone;
 
@@ -116,7 +116,7 @@ class Contact {
     /**
      * Get message= "Cette e-mail {{ value }} n'est pas valide !
      */ 
-    public function getMail()
+    public function getMail() : string
     {
         return $this->mail;
     }
@@ -126,7 +126,7 @@ class Contact {
      *
      * @return  self
      */ 
-    public function setMail($mail)
+    public function setMail(string $mail) :self
     {
         $this->mail = $mail;
 
@@ -136,7 +136,7 @@ class Contact {
     /**
      * Get min = 5, max = 500
      */ 
-    public function getMessage()
+    public function getMessage() : string
     {
         return $this->message;
     }
@@ -146,7 +146,7 @@ class Contact {
      *
      * @return  self
      */ 
-    public function setMessage($message)
+    public function setMessage(string $message) :self
     {
         $this->message = $message;
 
@@ -157,7 +157,7 @@ class Contact {
     /**
      * Get the value of gite
      */ 
-    public function getGite()
+    public function getGite() : Gite
     {
         return $this->gite;
     }

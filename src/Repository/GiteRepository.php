@@ -4,10 +4,9 @@ namespace App\Repository;
 
 use App\Entity\Gite;
 use App\Entity\GiteSearch;
-use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\Mapping\OrderBy;
+
 
 /**
  * @method Gite|null find($id, $lockMode = null, $lockVersion = null)
@@ -26,7 +25,7 @@ class GiteRepository extends ServiceEntityRepository
       * @return Gite[] Returns an array of Gite objects
       */
     
-    public function findLastGite()
+    public function findLastGite() : array
     {
         return $this->createQueryBuilder('g')
             ->orderBy('g.created_at', 'DESC')
@@ -49,16 +48,20 @@ class GiteRepository extends ServiceEntityRepository
     public function findAllGiteSearch(GiteSearch $search)
     {
         $query = $this->createQueryBuilder('g')
-                        ->join('g.equipements', 'e')
-                        ->join('g.services', 's')
-                        ->select('e','s' , 'g');
+                        ->select('g','e')
+                        ->join('g.equipements','e');
+                        
+                        // ->join('g.services','s');
+                        
                         
 
         if ($search->getMinSurface()){
             $query = $query
                         ->andWhere('g.surface > :minSurface')
                         ->setParameter('minSurface', $search->getMinSurface() )
-                        ->orderBy('g.surface', 'ASC');;
+                        ->orderBy('g.surface', 'ASC');
+            dump($search->getMinSurface());
+
         }
 
         if ($search->getMaxBedrooms()){
@@ -76,26 +79,29 @@ class GiteRepository extends ServiceEntityRepository
                         ->orderBy('g.price', 'DESC');
         }
 
-        if (($search->getAnimalsFriendly())) {
+        if ((!empty($search->getAnimalsFriendly()))) 
+        {
             $query = $query
                         ->andWhere('g.animals = 1');
         }
         
-         if (($search->getByEquipement())) {
+          if ((!empty($search->getByEquipement()))) 
+        {
              
              $query = $query
                          ->andWhere('e.id IN (:equipements)')
                          ->setParameter('equipements', $search->getByEquipement());
                         
-         }
+        }
 
-          if (!empty($search->byServices)) {
+        //   if ((!empty($search->getByServices()))) 
+        //   {
              
-             $query = $query
-                        ->andWhere('s.id IN (:services)')
-                        ->setParameter('services', $search->byServices);
+        //      $query = $query
+        //                 ->andWhere('s.id IN (:services)')
+        //                 ->setParameter('services', $search->getByServices());
                        
-         }
+        //  }
 
         return $query->getQuery()->getResult();
     }

@@ -44,14 +44,14 @@ class GiteSearch {
     private $byEquipement;
 
     /**
-     * @var boolean|null
+     * @var boolean
      */
     public $animalsFriendly;
 
     /**
      * @var Service|null
      */
-    public $byServices;
+    private $byServices;
 
     /**
      * Get $minSurface Surface minimum
@@ -171,6 +171,30 @@ class GiteSearch {
     public function setByEquipement($byEquipement)
     {
         $this->byEquipement = $byEquipement;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of byServices
+     *
+     * @return  Service|null
+     */ 
+    public function getByServices()
+    {
+        return $this->byServices;
+    }
+
+    /**
+     * Set the value of byServices
+     *
+     * @param  Service|null  $byServices
+     *
+     * @return  self
+     */ 
+    public function setByServices($byServices)
+    {
+        $this->byServices = $byServices;
 
         return $this;
     }

@@ -7,12 +7,14 @@ use App\Entity\Contact;
 use App\Form\ContactType;
 use App\Entity\GiteSearch;
 use App\Form\GiteSearchType;
-use App\Notification\ContactNotification;
 use App\Repository\GiteRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Notification\ContactNotification;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class GiteController extends AbstractController 
@@ -29,7 +31,7 @@ class GiteController extends AbstractController
      /**
      * @Route("/", name="home")
      */
-    public function homeGites()
+    public function homeGites(): Response 
     {
         $gites = $this->repo->findLastGite();
         return $this->render('home/index.html.twig', [
@@ -41,7 +43,7 @@ class GiteController extends AbstractController
     /**
      * @Route("/gites", name="gite.index")
      */
-    public function index(GiteRepository $repo, PaginatorInterface $paginator, Request $request)
+    public function index(GiteRepository $repo, PaginatorInterface $paginator, Request $request): Response 
     {
         $search = new GiteSearch();
 
@@ -62,7 +64,7 @@ class GiteController extends AbstractController
     /**
      *@Route("/gite/{id}", name="gite.show") 
      */
-    public function show(Gite $gite, Request $request, ContactNotification $notification)
+    public function show(Gite $gite, Request $request, ContactNotification $notification) : Response 
     {
         $contact = new Contact();
         $contact->setGite($gite);
