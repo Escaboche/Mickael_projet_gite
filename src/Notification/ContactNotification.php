@@ -23,8 +23,8 @@ class ContactNotification {
                     ->from("EscabocheDev@gmail.com")
                     ->to($contact->getMail())
                     ->subject("Demande de contact")
-                    ->htmlTemplate('Notification\contact.html.twig')
-                    ->context(["contact" => $contact]);
+                    ->htmlTemplate('Notification\Contact.html')
+                    ->context(["contact" => $contact]) ;
 
         $this->mailer->send($email);
     }

@@ -1,0 +1,47 @@
+<mjml>
+  <mj-head>
+    <mj-attributes>
+      <mj-class name="header" font-size="45" color="white" align="center" />
+
+    </mj-attributes>
+  </mj-head>
+
+
+  <mj-body>
+    <mj-container>
+
+      <mj-section full-width="full-width" background-url='src/images/backgroundMail.jpg' background-size="cover">
+        <mj-column>
+          <mj-image width="200" src="src/images/25398911-ré.jpg" alt="" />
+          <mj-text mj-class="header">
+            Les Gites PROGICA
+          </mj-text>
+        </mj-column>
+      </mj-section>
+
+      <mj-section>
+        <mj-column>
+
+
+          <mj-text mj-class="header" color="black">
+            <p>Nouvelle demande de contacte de Mr/Mme {{contact.firstName}} {{contact.lastName}}.</p>
+
+            <p>Concernant le Gite : {{contact.gite.name}} , N° {{contact.gite.id}}</p>
+
+
+            <p>Demande : {{contact.message}}</p>
+
+            <p>Contact :
+              <ul>
+                <li>Telephone : {{contact.phone}}</li>
+                <li>Email : {{contact.mail}}</li>
+              </ul>
+            </p>
+
+          </mj-text>
+
+        </mj-column>
+      </mj-section>
+    </mj-container>
+  </mj-body>
+</mjml>

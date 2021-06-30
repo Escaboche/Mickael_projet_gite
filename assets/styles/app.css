@@ -10,3 +10,24 @@ body {
     display: block;
     position: sticky;
 }
+
+#Mail {
+    font-size: 2rem;
+    text-align: center;
+}
+
+#addGite {
+    font-size: 2rem;
+    text-align: center;
+}
+
+
+.ImgNotFound {
+    width: 416px;
+	height: 262px;
+}
+
+.card-img-top {
+    width: 280px;
+    height: 230px;
+}

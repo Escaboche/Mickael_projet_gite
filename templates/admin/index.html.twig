@@ -7,8 +7,8 @@
 <h1>Administration des gites</h1>
 
 {% for message in app.flashes('success') %}
-    <div class="alert alert-primary">
-        <p>{{ message }}</p>
+    <div class="alert-primary">
+        <p id="addGite" >{{ message }}</p>
     </div>
 {% endfor %}
 

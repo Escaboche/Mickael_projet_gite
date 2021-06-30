@@ -38,7 +38,7 @@ class GiteSearch {
     private $maxPrice;
 
     /**
-     * @var Equipement|null
+     * @var Equipement
      *
      */
     private $byEquipement;
@@ -49,7 +49,7 @@ class GiteSearch {
     public $animalsFriendly;
 
     /**
-     * @var Service|null
+     * @var Service
      */
     private $byServices;
 

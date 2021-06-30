@@ -6,6 +6,15 @@
 
 <h1>Gite : {{ gite.name }}</h1>
 
+{% for message in app.Flashes('success') %}
+<div  class="alert-primary">
+    <p id="Mail">{{message}}</p>
+</div>
+
+{% endfor %}
+
+
+
 <button class="btn btn-primary mt-3" id="Contact">Nous contacter</button>
 <div class=" mt-2 mb-2 " id="contactForm">
     {{form_start(form)}}
@@ -13,6 +22,7 @@
     <button class="btn btn-primary mt-2" type="submit">Envoyer</button>
     {{form_end(form)}}
 </div>
+
 
 
 <div class="row mt-4">
@@ -89,9 +99,9 @@
 
     <div class="col-4">
         {% if gite.imageName %}
-            <img src=" {{vich_uploader_asset(gite,"imageFile" )}}" class="card-img-top" alt="">
+        <img src=" {{vich_uploader_asset(gite,"imageFile" )}}" class="ImgNotFound" alt="">
         {% else %}
-            <img src="{{asset('images/img/images.png')}}" class="card-img-top" alt="">
+        <img src="{{asset('images/img/images.png')}}" class="ImgNotFound" alt="">
         {% endif %}
     </div>
 </div>

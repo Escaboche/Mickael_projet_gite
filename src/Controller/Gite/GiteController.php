@@ -75,7 +75,7 @@ class GiteController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $notification->notify($contact);
             
-            $this->addFlash("success", "Le mail est bien envoyé");
+            $this->addFlash("success", "Le mail a bien été envoyé");
             return $this->redirectToRoute('gite.show',[
                 'id' => $gite->getId()
             ]);

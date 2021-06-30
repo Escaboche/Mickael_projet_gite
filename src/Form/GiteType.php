@@ -37,7 +37,7 @@ class GiteType extends AbstractType
             ])
             ->add('imageFile', FileType::class, [
                 'required' => false,
-                'label' => 'Image du gite',
+                'label' => 'Photo du gite',
             ])
             ->add('description', TextareaType::class, [
                 'required' => false,
@@ -95,6 +95,9 @@ class GiteType extends AbstractType
                 'class' => Service::class,
                 "choice_label" => "name",
                 "multiple" => true,
+                "required" => false,
+                "label" => 'Les Services du gite',
+                "expanded" => true
             ]);
     }
 

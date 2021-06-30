@@ -1,15 +1,53 @@
-<mjml>
-  <mj-body>
-    <mj-section>
-      <mj-column>
+<!DOCTYPE html>
+<html lang="en">
 
-        <mj-text font-size="30px" color="#F45E43" font-family="helvetica">PROGICA</mj-text>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    p {
+      font-size: 30px;
+    }
 
-        <mj-divider border-color="#F45E43"></mj-divider>
+    li {
+      font-size: 30px
+    }
+    body {
+      background-color: darkseagreen;
+    }
+    header {
+      display: block;
+    }
+  </style>
+</head>
 
-        <mj-text font-size="20px" color="#F45E43" font-family="helvetica">Hello World</mj-text>
+<body>
+  
+  <header>
+    <h1>Les Gites PROGICA</h1>
+  </header>
 
-      </mj-column>
-    </mj-section>
-  </mj-body>
-</mjml>
+  <img src='cid:footer-signature' alt="logo">
+
+  <main>
+    <p>Nouvelle demande de contacte de Mr/Mme {{contact.firstName}} {{contact.lastName}}.</p>
+
+    <p>Concernant le Gite : {{contact.gite.name}} , N° {{contact.gite.id}}</p>
+    
+
+    <p>Demande : {{contact.message}}</p>
+
+    <p>Contact :
+      <ul>
+        <li>Telephone : {{contact.phone}}</li>
+        <li>Email : {{contact.mail}}</li>
+      </ul>
+    </p>
+
+  </main>
+
+</body>
+
+</html>
