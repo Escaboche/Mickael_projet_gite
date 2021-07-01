@@ -1,0 +1,18 @@
+#homeTitle {
+    width: 27rem;
+    font-size: 50px;
+    border: thick double #6f787c;
+    padding: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    
+}
+
+#btnAll {
+    
+    left: 30px;
+    position: fixed;
+   
+   
+}

@@ -32,7 +32,10 @@
 		<div class="col-3">{{ form_row(formGite.city) }}</div>
 		<div class="col-3">{{ form_row(formGite.postal_code) }}</div>
 	</div>
-
+	    <div class="row">
+    		<div class="col-6">{{ form_row(formGite.lat) }}</div>
+    		<div class="col-6">{{ form_row(formGite.lng) }}</div>
+	</div>
     <button class="mt-5 btn btn-secondary">{{button|default('Envoyer')}}</button>
 
 	{{ form_end(formGite) }}

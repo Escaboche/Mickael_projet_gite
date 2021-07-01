@@ -7,7 +7,7 @@
 <h1>Gite : {{ gite.name }}</h1>
 
 {% for message in app.Flashes('success') %}
-<div  class="alert-primary">
+<div class="alert-primary">
     <p id="Mail">{{message}}</p>
 </div>
 
@@ -97,13 +97,30 @@
         </table>
     </div>
 
-    <div class="col-4">
+    <div class="col-4 mb-2">
+
         {% if gite.imageName %}
-        <img src=" {{vich_uploader_asset(gite,"imageFile" )}}" class="ImgNotFound" alt="">
+            <img src=" {{vich_uploader_asset(gite,"imageFile" )}}" class="ImgNotFound" alt="">
         {% else %}
-        <img src="{{asset('images/img/images.png')}}" class="ImgNotFound" alt="">
+            <img src="{{asset('images/img/images.png')}}" class="ImgNotFound" alt="">
         {% endif %}
+
+    <div class="row-5">
+        <div class="col mt-4">
+
+            {% if gite.lat != 0 and gite.lng != 0 %}
+                <div id="map" style="width: 100%; height: 305px" data-lat="{{gite.lat}}" data-lng="{{gite.lng}}"></div>
+            {% endif %}
+                    
+        </div>
     </div>
+</div>
+
+
+
+</div>
+<div class="row">
+
 </div>
 
 {% endblock %}

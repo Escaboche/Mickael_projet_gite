@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class GiteType extends AbstractType
@@ -98,7 +99,10 @@ class GiteType extends AbstractType
                 "required" => false,
                 "label" => 'Les Services du gite',
                 "expanded" => true
-            ]);
+            ])
+            ->add('lat', HiddenType::class)
+            ->add('lng', HiddenType::class)
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver) : void

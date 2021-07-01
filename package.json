@@ -16,6 +16,8 @@
         "build": "encore production --progress"
     },
     "dependencies": {
-        "mjml": "^4.10.1"
+        "leaflet": "^1.7.1",
+        "mjml": "^4.10.1",
+        "places.js": "^1.19.0"
     }
 }
