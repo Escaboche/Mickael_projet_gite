@@ -3,13 +3,14 @@
 namespace App\Form;
 
 
+use App\Entity\Service;
 use App\Entity\Equipement;
 use App\Entity\GiteSearch;
-use App\Entity\Service;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -51,6 +52,13 @@ class GiteSearchType extends AbstractType
                 "class" => Service::class,
                 "expanded" => true,
                 "multiple" => true
+            ])
+            ->add('searchGite',TextType::class,[
+                'required' => false,
+                'label' => false,
+                'attr' => [
+                    'placeholder' => 'Entrer le nom du gite'
+                ]
             ])
             ->add('submit', SubmitType::class,[
                 'label' => 'Soumettre'

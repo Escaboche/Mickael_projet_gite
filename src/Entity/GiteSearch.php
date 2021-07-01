@@ -54,6 +54,11 @@ class GiteSearch {
     private $byServices;
 
     /**
+     * @var string
+     */
+    private $searchGite;
+
+    /**
      * Get $minSurface Surface minimum
      *
      * @return  int|null
@@ -195,6 +200,30 @@ class GiteSearch {
     public function setByServices($byServices)
     {
         $this->byServices = $byServices;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of searchGite
+     *
+     * @return  string
+     */ 
+    public function getSearchGite()
+    {
+        return $this->searchGite;
+    }
+
+    /**
+     * Set the value of searchGite
+     *
+     * @param  string  $searchGite
+     *
+     * @return  self
+     */ 
+    public function setSearchGite(string $searchGite)
+    {
+        $this->searchGite = $searchGite;
 
         return $this;
     }

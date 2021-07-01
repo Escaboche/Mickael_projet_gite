@@ -4,13 +4,15 @@ namespace App\Controller\Admin;
 
 use App\Entity\Gite;
 use App\Form\GiteType;
+use App\Entity\GiteSearch;
+use App\Form\GiteSearchType;
 use App\Repository\GiteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class AdminController extends AbstractController {
 
@@ -27,11 +29,17 @@ class AdminController extends AbstractController {
     /**
      * @Route("/admin", name="admin.index")
      */
-    public function index() : Response  {
+    public function index(Request $request, GiteRepository $repo) : Response  {
 
-        $gites = $this->giteRepository->findAll();
+        $search = new GiteSearch();
+
+        $form = $this->createForm(GiteSearchType::class, $search);
+        $form->handleRequest($request);
+
+        $gites = $this->giteRepository->findByName($search);
         return $this->render('admin/index.html.twig', [
-            "gites" => $gites
+            "gites" => $gites,
+            "form" => $form->createView()
         ]);
     }
 
@@ -70,7 +78,7 @@ class AdminController extends AbstractController {
         if ($form->isSubmitted() && $form->isValid()) {
             
             $this->em->flush();
-            $this->addFlash("success", "Le gite est bien été modifier");
+            $this->addFlash("success", "Le gite de : {$gite->getName()} est bien été modifier");
             return $this->redirectToRoute('admin.index');
 
         }       

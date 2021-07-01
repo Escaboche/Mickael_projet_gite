@@ -58,7 +58,8 @@ class GiteController extends AbstractController
         
         return $this->render('gite/index.html.twig', [
             'pagination' => $pagination,
-            'form' => $form->createView()]);
+            'form' => $form->createView()
+        ]);
     }
 
     /**

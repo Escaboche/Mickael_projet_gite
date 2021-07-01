@@ -110,6 +110,18 @@ class GiteRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
 
+    public function findByName(GiteSearch $search){
+        $query = $this->createQueryBuilder('g')
+                        ->select('g');
+
+    if (!empty($search->getSearchGite())) {
+        $query = $query
+                    ->andWhere('g.name LIKE :word ')
+                    ->setParameter('word' , "%{$search->getSearchGite()}%");
+    }
+
+    return $query->getQuery()->getResult();
+    }
     /*
     public function findOneBySomeField($value): ?Gite
     {
