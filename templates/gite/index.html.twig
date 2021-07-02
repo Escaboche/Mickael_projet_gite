@@ -29,6 +29,7 @@
 			<div class="">
 				{{form_row(form.maxPrice)}}
 			</div>
+			
 
 			<div class="row mt-4 text-white">
 				<div class="col-4">
@@ -42,7 +43,7 @@
 				</div>
 				<div class=" mt-2">
 				{{form_row(form.submit)}}
-				{{form_end(form)}}
+				{{form_end(form, {'render_rest' : false})}}
 				</div>
 			</div>
 		</div>

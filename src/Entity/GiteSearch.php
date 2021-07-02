@@ -55,6 +55,12 @@ class GiteSearch {
 
     /**
      * @var string
+     * @Assert\Length(
+     *      min = 3,
+     *      max = 50,
+     *      minMessage = "Le nom ne peut posséder minimum {{ limit }} caractères",
+     *      maxMessage = Le nom ne peut pas depasser maximum {{ limit }} caractères"
+     * )
      */
     private $searchGite;
 
@@ -169,7 +175,7 @@ class GiteSearch {
     /**
      * Set the value of byEquipement
      *
-     * @param  Equipement|null  $byEquipement
+     * @param  Equipement  $byEquipement
      *
      * @return  self
      */ 
@@ -193,7 +199,7 @@ class GiteSearch {
     /**
      * Set the value of byServices
      *
-     * @param  Service|null  $byServices
+     * @param  Service  $byServices
      *
      * @return  self
      */ 

@@ -92,7 +92,7 @@ class AdminController extends AbstractController {
     /**
      * @Route("/{id}", name="admin.delete", methods={"POST"})
      */
-    public function delete(Gite $gite, Request $request) 
+    public function delete(Gite $gite, Request $request) : RedirectResponse
     {        
         if ($this->isCsrfTokenValid('delete-item'.$gite->getId(),$request->request->get('_token') )) {
             $em = $this->getDoctrine()->getManager();

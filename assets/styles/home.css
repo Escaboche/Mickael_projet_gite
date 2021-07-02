@@ -11,8 +11,13 @@
 
 #btnAll {
     
-    left: 30px;
+    right: 30px;
     position: fixed;
+    border: 3px black solid;
+    background-color: cadetblue;
+    padding: 20px;
+    font-size: 30px;
+    color: black;
    
    
 }

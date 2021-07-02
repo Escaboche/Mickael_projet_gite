@@ -34,16 +34,16 @@ class GiteRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-    public function findOneBySomeField($value): ?Gite
-    {
-        return $this->createQueryBuilder('g')
-            ->andWhere('g.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult();
-    }
+    // public function findOneBySomeField($value): ?Gite
+    // {
+    //     return $this->createQueryBuilder('g')
+    //         ->andWhere('g.exampleField = :val')
+    //         ->setParameter('val', $value)
+    //         ->getQuery()
+    //         ->getOneOrNullResult();
+    // }
 
-    public function findAllGiteSearch(GiteSearch $search)
+    public function findAllGiteSearch(GiteSearch $search) : array
     {
         $query = $this->createQueryBuilder('g')
             ->select('g','e')
@@ -110,7 +110,10 @@ class GiteRepository extends ServiceEntityRepository
         return $query->getQuery()->getResult();
     }
 
-    public function findByName(GiteSearch $search){
+
+    
+    public function findByName(GiteSearch $search) : array
+    {
         $query = $this->createQueryBuilder('g')
                         ->select('g');
 

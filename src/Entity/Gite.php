@@ -154,12 +154,12 @@ class Gite
     /**
      * @ORM\Column(type="float")
      */
-    private $lat;
+    private float $lat;
 
     /**
      * @ORM\Column(type="float")
      */
-    private $lng;
+    private float $lng;
 
     public function __construct()
     {
@@ -357,7 +357,7 @@ class Gite
      *
      * @param  File|null  $imageFile
      *
-     * @return  property
+     * @return  Gite
      */ 
     public function setImageFile(?File $imageFile)
     {
