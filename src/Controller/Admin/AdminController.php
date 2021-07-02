@@ -78,7 +78,7 @@ class AdminController extends AbstractController {
         if ($form->isSubmitted() && $form->isValid()) {
             
             $this->em->flush();
-            $this->addFlash("success", "Le gite de : {$gite->getName()} est bien été modifier");
+            $this->addFlash("success", "Le gite de : {$gite->getName()} est bien été modifié");
             return $this->redirectToRoute('admin.index');
 
         }       
@@ -98,6 +98,7 @@ class AdminController extends AbstractController {
             $em = $this->getDoctrine()->getManager();
             $em->remove($gite);
             $em->flush();
+            $this->addFlash("success", "Le gite de : {$gite->getName()} est bien été supprimé");
             
         }       
         return $this->redirectToRoute("admin.index");
